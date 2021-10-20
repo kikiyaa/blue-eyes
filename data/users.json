@@ -1,0 +1,20 @@
+[
+    {
+        "firstName": "jwpark",
+        "lastName": "jwpark",
+        "username": "jwpark",
+        "hash": "$2a$10$xBaX/dVaQhRQTTfvQzMHlumXVUkJHew1Yx/O3hhsx9nN0ORG69dwu",
+        "id": 1,
+        "dateCreated": "2021-10-15T07:16:37.695Z",
+        "dateUpdated": "2021-10-15T07:16:37.695Z"
+    },
+    {
+        "firstName": "kikiyaa",
+        "lastName": "kikiyaa",
+        "username": "kikiyaa",
+        "hash": "$2a$10$CrxCa/flVcoKI.dgZexs/Oppxzdu9aWX7mGfsVcUkdjeBkU7qBfjK",
+        "id": 2,
+        "dateCreated": "2021-10-15T08:30:43.784Z",
+        "dateUpdated": "2021-10-15T08:30:43.784Z"
+    }
+]

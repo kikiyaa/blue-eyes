@@ -1,0 +1,26 @@
+    result.stdout.on('data', function(data) {
+        console.log('stdout: ' + data);
+        test = data.toString()
+        console.log(test)  
+    });
+
+            response.then(function (result){
+            console.log(result.text)
+            return_podList = result.text
+        });
+        console.log(return_podList)
+        setLink(return_podList)
+
+
+
+        <td><Link href={`${connectLink}`} ><a target='_blank'>Connect</a></Link></td>
+
+
+        const MyLink2 = () => {
+            console.log("my link")
+            console.log(link_flag)
+            if (link_flag != true)
+                return (<td>-</td>);
+            else
+                return (<Link href={`${connectLink}`}><a target='_blank'>Connect</a></Link>);
+        };
