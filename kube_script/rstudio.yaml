@@ -1,0 +1,56 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+ labels:
+   app: r-studio-server
+ name: r-studio-server
+spec:
+ replicas: 1
+ selector:
+   matchLabels:
+     app: r-studio-server
+ template:
+   metadata:
+     labels:
+       app: r-studio-server
+   spec:
+     containers:
+     #- image: jwpark/r-server:03R01
+     - image: $IMAGE_NAME
+       imagePullPolicy: IfNotPresent
+       lifecycle:
+         postStart:
+           exec:
+             command: ["/bin/sh", "-c", "groupmod -g $USER_GID rstudio; usermod -d /home01/$USER_ID -u $USER_UID -g $USER_GID rstudio"]
+       name: r-studio-server
+       ports:
+       - containerPort: 8787
+       volumeMounts:
+       - name: home-volume
+         mountPath: /home01/$USER_ID
+       - name: scratch-volume
+         mountPath: /scratch/$USER_ID
+     volumes:
+     - name: home-volume
+       hostPath:
+         path: /home01/$USER_ID
+         type: Directory
+     - name: scratch-volume
+       hostPath:
+         path: /scratch/$USER_ID
+         type: Directory
+---
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: rstudio-server
+  name: rstudio-server
+spec:
+  ports:
+  - name: rstudio
+    port: 8787
+    targetPort: 8787
+  selector:
+    app: r-studio-server
+  type: NodePort
