@@ -1,2 +1,2 @@
 ## kikiyaa
-KISTI web portal service
+KISTI web portal service using github
