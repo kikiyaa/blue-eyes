@@ -1,0 +1,36 @@
+kind: Deployment
+apiVersion: apps/v1
+metadata:
+  name: ttyd
+  labels:
+    app: ttyd
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: ttyd
+  template:
+    metadata:
+      labels:
+        app: ttyd
+    spec:
+      containers:
+      - name: plink
+        image: jwpark/plink
+        imagePullPolicy: Always
+        workingDir: /home/jwpark
+        command: ["/bin/sh"]
+        args: ["-c", "ttyd -c jwpark:pjw1522518! bash"]
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: ttyd
+spec:
+  type: NodePort
+  ports:
+  - protocol: TCP
+    name: ttyd
+    port: 7681
+  selector:
+    app: ttyd

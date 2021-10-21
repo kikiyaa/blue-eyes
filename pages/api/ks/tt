@@ -24,3 +24,27 @@
             else
                 return (<Link href={`${connectLink}`}><a target='_blank'>Connect</a></Link>);
         };
+
+        var myObj = {};
+var result_string = '';
+var port = ''
+
+myObj.list = function(callback){
+    exec("kubectl  get svc ttyd -o=jsonpath=\"{.spec.ports[*].nodePort}\"", function (error, stdout, stderr) {
+       callback(stdout);
+    });
+  }
+  
+
+function getPodlist(req, res) {
+    console.log("get pod list")
+    
+    myObj.list(function (result) {
+        //console.log(result)
+        port = result
+        //return res.status(200).json({result});
+     });
+    //console.log(result_string)
+    result_string = "ttyd 10 " + port
+    return res.status(200).json({text: result_string});
+}

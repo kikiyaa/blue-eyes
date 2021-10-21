@@ -4,23 +4,25 @@ import { ksService } from 'services/ksservice';
 import { useState, useEffect } from 'react';
 import Link from 'next/link'
 import React from 'react';
+import NextNprogress from 'nextjs-progressbar';
+import NProgress from "nprogress";
+import Router from "next/router";
 
 
 export default Index;
 
 function Index() {
+    let timer;
 
     const [connectLink, setLink] = useState(null);
-    const [podName, setPodname] = useState(null);
-    const [podAge, setPodage] = useState(null);
-    const username = userService.userValue?.firstName
+    const [status, setStatus] = useState(null);
 
+    const username = userService.userValue?.firstName
+    
     useEffect(() => {
         setLink("")
-        setPodname("-")
-        setPodage("-")
-      }, []);
-    
+        setStatus("-")
+    }, []);
 
     function click_create() {
         ksService.podCreate(username, "ttyd")
@@ -28,23 +30,28 @@ function Index() {
     }
 
     function click_connect(){
+        timer = setTimeout(function () {
+            click_connect();
+          }, 5000);
         const response = ksService.podList(username, "ttyd")
         //console.log("get result")
         response.then(function (result){
-            console.log(result.text)
+            console.log(result.text);
             const words = result.text.split(' ');
             //setLink(result.text)
-            setPodname(words[0])
-            setPodage(words[1])
-            setLink("http://150.183.146.192:"+words[2])
+            setStatus(words[0]);
+            if(words[0] == "Running"){
+                setLink("http://150.183.249.17:"+words[1]);
+                clearTimeout(timer);
+            }
         });
     }
 
     function click_delete(){
         ksService.podDelete(username, "ttyd")
         setLink("")
-        setPodname("-")
-        setPodage("-")
+        setStatus("-")
+        clearTimeout(timer);
     }
 
     return (
@@ -55,15 +62,15 @@ function Index() {
                 <thead>
                     <tr>
                         <th style={{ width: '30%' }}>Pod Name</th>
-                        <th style={{ width: '10%' }}>Ages</th>
+                        <th style={{ width: '10%' }}>Status</th>
                         <th style={{ width: '50%' }}>Link</th>
                         <th style={{ width: '10%' }}></th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr>
-                        <td>{podName}</td>
-                        <td>{podAge}</td>
+                        <td>TTYD</td>
+                        <td>{status}</td>
                         <td><Link href={`${connectLink}`} ><a target='_blank'>{connectLink}</a></Link></td>
                         <td style={{ whiteSpace: 'nowrap' }}>
                             <button onClick={() => click_create()} className="btn btn-sm btn-success btn-delete-user" disabled={false}>create</button>&nbsp;

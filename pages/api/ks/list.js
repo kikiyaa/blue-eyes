@@ -1,33 +1,16 @@
-import { exec } from 'child_process';
-import { apiHandler, usersRepo, omit } from 'helpers/api';
+import { execSync } from 'child_process';
+import { apiHandler} from 'helpers/api';
 
 
 export default apiHandler({
     get: getPodlist
 });
 
-var myObj = {};
-var result_string = '';
-
-myObj.list = function(callback){
-    exec("pwd", function (error, stdout, stderr) {
-       callback(stdout);
-    });
-  }
-  
-
 function getPodlist(req, res) {
     console.log("get pod list")
-    
-    myObj.list(function (result) {
-        //console.log(result)
-        result_string = result
-        //return res.status(200).json({result});
-     });
-    //console.log(result_string)
-    result_string = "pod_name age port"
+    const status = execSync ('kubectl get pod -l app=ttyd -o jsonpath="{.items[*].status.phase}"')
+    const port = execSync ('kubectl  get svc ttyd -o=jsonpath="{.spec.ports[*].nodePort}"')
+    const result_string = ""+status.toString() + " " + port.toString();
+    console.log(result_string)
     return res.status(200).json({text: result_string});
 }
-
-
-
