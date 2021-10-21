@@ -2,13 +2,8 @@
   "/_app": "pages/_app.js",
   "/_error": "pages/_error.js",
   "/_document": "pages/_document.js",
-  "/rstudio": "pages/rstudio.js",
+  "/next/dist/pages/_error": "pages/next/dist/pages/_error.js",
   "/filerun": "pages/filerun.js",
   "/api/ks/list": "pages/api/ks/list.js",
-  "/api/ks/delete": "pages/api/ks/delete.js",
-  "/users": "pages/users.js",
-  "/api/ks/create": "pages/api/ks/create.js",
-  "/ttyd": "pages/ttyd.js",
-  "/": "pages/index.js",
-  "/api/users": "pages/api/users.js"
+  "/rstudio": "pages/rstudio.js"
 }

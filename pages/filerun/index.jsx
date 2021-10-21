@@ -71,7 +71,7 @@ function Index() {
 
     return (
         <Layout>
-            <h1>FileManager</h1>
+            <h1>File Manager</h1>
             Hi {userService.userValue?.firstName}!
             <table className="table table-striped">
                 <thead>
@@ -85,7 +85,7 @@ function Index() {
                     <tr>
                         <td>File Manager</td>
                         <td>{status}</td>
-                        <td><Link href={`${connectLink}`} ><a target='_blank'>{connectLink}</a></Link></td>
+                        <td><Link href={`${connectLink}?page=login&action=login&nonajax=1&username=superuser&password=superuser`} ><a target='_blank'>{connectLink}</a></Link></td>
                         <td style={{ whiteSpace: 'nowrap' }}>
                             <button onClick={() => click_create()} className="btn btn-sm btn-success btn-delete-user" disabled={false}>create</button>&nbsp;
                             <button onClick={() => click_delete()} className="btn btn-sm btn-danger btn-delete-user" disabled={false}>Delete</button>

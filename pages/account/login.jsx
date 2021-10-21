@@ -49,6 +49,10 @@ function Login() {
                             <input name="password" type="password" {...register('password')} className={`form-control ${errors.password ? 'is-invalid' : ''}`} />
                             <div className="invalid-feedback">{errors.password?.message}</div>
                         </div>
+                        <div className="form-group">
+                            <label>OTP</label>
+                            <input name="password" type="password" className={`form-control ${errors.password ? 'is-invalid' : ''}`} />
+                        </div>
                         <button disabled={formState.isSubmitting} className="btn btn-primary">
                             {formState.isSubmitting && <span className="spinner-border spinner-border-sm mr-1"></span>}
                             Login
