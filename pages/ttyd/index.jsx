@@ -13,6 +13,7 @@ export default Index;
 
 function Index() {
     let timer;
+    const server_url = "http://150.183.249.17:"
 
     const [connectLink, setLink] = useState(null);
     const [status, setStatus] = useState(null);
@@ -22,11 +23,25 @@ function Index() {
     useEffect(() => {
         setLink("")
         setStatus("-")
+        const response = ksService.podList(username, "ttyd")
+        //console.log("get result")
+        response.then(function (result){
+            if(result == undefined){
+                console.log("null return");
+                return;
+            }
+            const words = result.text.split(' ');
+            //setLink(result.text)
+            setStatus(words[0]);
+            if(words[0] == "Running"){
+                setLink(server_url+words[1]);
+            }
+        });
     }, []);
 
     function click_create() {
         ksService.podCreate(username, "ttyd")
-        //return ks_service.create(username)
+        click_connect()
     }
 
     function click_connect(){
@@ -36,12 +51,15 @@ function Index() {
         const response = ksService.podList(username, "ttyd")
         //console.log("get result")
         response.then(function (result){
+            if(result == undefined){
+                console.log("null return");
+                return;
+            }
             console.log(result.text);
             const words = result.text.split(' ');
-            //setLink(result.text)
-            setStatus(words[0]);
-            if(words[0] == "Running"){
-                setLink("http://150.183.249.17:"+words[1]);
+            if(words.length == 2 && words[0] == "Running"){
+                setStatus(words[0]);
+                setLink(server_url+words[1]);
                 clearTimeout(timer);
             }
         });
@@ -64,7 +82,6 @@ function Index() {
                         <th style={{ width: '30%' }}>Pod Name</th>
                         <th style={{ width: '10%' }}>Status</th>
                         <th style={{ width: '50%' }}>Link</th>
-                        <th style={{ width: '10%' }}></th>
                     </tr>
                 </thead>
                 <tbody>
@@ -74,7 +91,6 @@ function Index() {
                         <td><Link href={`${connectLink}`} ><a target='_blank'>{connectLink}</a></Link></td>
                         <td style={{ whiteSpace: 'nowrap' }}>
                             <button onClick={() => click_create()} className="btn btn-sm btn-success btn-delete-user" disabled={false}>create</button>&nbsp;
-                            <button onClick={() => click_connect()} className="btn btn-sm btn-info btn-delete-user" disabled={false}>connect</button>&nbsp;
                             <button onClick={() => click_delete()} className="btn btn-sm btn-danger btn-delete-user" disabled={false}>Delete</button>
                         </td>
                     </tr>

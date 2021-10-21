@@ -2,8 +2,8 @@
   "/_app": "pages/_app.js",
   "/_error": "pages/_error.js",
   "/_document": "pages/_document.js",
-  "/ttyd": "pages/ttyd.js",
-  "/next/dist/pages/_error": "pages/next/dist/pages/_error.js",
   "/api/ks/list": "pages/api/ks/list.js",
-  "/api/ks/create": "pages/api/ks/create.js"
+  "/ttyd": "pages/ttyd.js",
+  "/api/ks/create": "pages/api/ks/create.js",
+  "/api/ks/delete": "pages/api/ks/delete.js"
 }
