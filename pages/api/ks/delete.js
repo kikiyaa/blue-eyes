@@ -10,8 +10,8 @@ function podDelete(req, res) {
     console.log(req.body)
     const message = req.body;
     const words = message.split(' ');
-    console.log("delete " + words[1] + " in " + words[0])
-    const command = "kubectl delete -f ./kube_script/"+words[1]+".yaml"
+    console.log("delete " + words[1] + " in " + words[0]);
+    const command = "kubectl delete -f ./kube_script/"+words[1]+".yaml -n "+words[0];
     const kubectl_delete = exec(command);
 
     kubectl_delete.stdout.on('data', (data) => {

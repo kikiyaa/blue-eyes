@@ -11,7 +11,7 @@ function create(req, res) {
     const message = req.body;
     const words = message.split(' ');
     console.log("create " + words[1] + " in " + words[0]);
-    const command = "./kube_script/ttyd.sh" + words[0];
+    const command = "./kube_script/"+words[1]+".sh " + words[0];
     //console.log(command)
     const kubectl_create = exec(command);
 

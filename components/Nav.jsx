@@ -26,6 +26,8 @@ function Nav() {
                 <NavLink href="/" exact className="nav-item nav-link">Home</NavLink>
                 <NavLink href="/users" className="nav-item nav-link">Users</NavLink>
                 <NavLink href="/ttyd" className="nav-item nav-link">Web Terminal</NavLink>
+                <NavLink href="/rstudio" className="nav-item nav-link">RStudio</NavLink>
+                <NavLink href="/filerun" className="nav-item nav-link">File Manager</NavLink>
                 <a onClick={logout} className="nav-item nav-link">Logout</a>
             </div>
         </nav>

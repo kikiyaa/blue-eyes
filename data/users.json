@@ -16,5 +16,14 @@
         "id": 2,
         "dateCreated": "2021-10-15T08:30:43.784Z",
         "dateUpdated": "2021-10-15T08:30:43.784Z"
+    },
+    {
+        "firstName": "infraa01",
+        "lastName": "infraa01",
+        "username": "infraa01",
+        "hash": "$2a$10$PU9VmGyzh0.WqLc/CuEEduvI/RmrxEg/D.sWZu.mKFdImQgeMW7Ja",
+        "id": 3,
+        "dateCreated": "2021-10-21T02:18:22.640Z",
+        "dateUpdated": "2021-10-21T02:18:22.640Z"
     }
 ]

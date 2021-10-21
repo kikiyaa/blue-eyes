@@ -24,7 +24,7 @@ async function podList(user, serviceName) {
     const message = user + " " + serviceName
     try {
       console.log("ks pod list")
-      const response = await fetchWrapper.get(`${baseUrl}/list`, message);
+      const response = await fetchWrapper.get(`${baseUrl}/list?user=${user}&service=${serviceName}`);
       //console.log("return value")
       //console.log(response)
       return response;

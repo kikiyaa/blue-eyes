@@ -4,16 +4,12 @@ import { ksService } from 'services/ksservice';
 import { useState, useEffect } from 'react';
 import Link from 'next/link'
 import React from 'react';
-import NextNprogress from 'nextjs-progressbar';
-import NProgress from "nprogress";
-import Router from "next/router";
-
 
 export default Index;
 
 function Index() {
     let timer;
-    const server_url = "http://150.183.249.17:"
+    const server_url = "http://150.183.146.192:"
 
     const [connectLink, setLink] = useState(null);
     const [status, setStatus] = useState(null);
@@ -31,9 +27,10 @@ function Index() {
                 return;
             }
             const words = result.text.split(' ');
+            console.log(result.text)
             //setLink(result.text)
             setStatus(words[0]);
-            if(words[0] == "Running"){
+            if(words.length == 2 && words[0] == "Running"){
                 setLink(server_url+words[1]);
             }
         });
