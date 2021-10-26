@@ -10,8 +10,6 @@ export default Index;
 
 function Index() {
     let timer;
-    const server_url = "http://150.183.146.192:"
-
     const [connectLink, setLink] = useState(null);
     const [status, setStatus] = useState(null);
 
@@ -31,7 +29,7 @@ function Index() {
             //setLink(result.text)
             setStatus(words[0]);
             if(words[0] == "Running"){
-                setLink(server_url+words[1]);
+                setLink("http://rstudio.app.ksc.re.kr");
             }
         });
     }, []);
@@ -56,7 +54,7 @@ function Index() {
             const words = result.text.split(' ');
             if(words.length == 2 && words[0] == "Running"){
                 setStatus(words[0]);
-                setLink(server_url+words[1]);
+                setLink("http://rstudio.app.ksc.re.kr");
                 clearTimeout(timer);
             }
         });
